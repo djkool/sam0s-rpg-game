@@ -7,7 +7,7 @@ screen=pygame.display.set_mode((660,450))
 
 tiles = pygame.sprite.Group()
 
-world=pygame.image.load('world/r00.png')
+world=pygame.image.load('r00.png')
 
 clock=pygame.time.Clock()
 
@@ -29,7 +29,7 @@ class Controller(object):
     def update(self,playerobj):
         if playerobj.x>650:
             self.area[0]+=1
-            print "lel"
+            print ("lel")
         tiles.update()
 class Player(object):
     def __init__(self,x,y):
