@@ -35,9 +35,26 @@ class Player(object):
     def __init__(self,x,y):
         self.x=x
         self.y=y
+        self.money = 0
+        self.hp = 25
+        self.maxhp = 25
+        self.invpos=1
+    def inventory(self):
+        #*Slide* into the DMs
+        if self.invpos < 300:
+            self.invpos+=4
+        
     def update(self):
+        pygame.draw.circle(screen, (200,5,50), (self.invpos,32), 32, 0)
         pygame.draw.circle(screen, (0,235,50), (self.x,self.y), 16, 0)
         k=pygame.key.get_pressed()
+        
+        #Inventory Key
+        if k[K_i]:
+            self.inventory()
+        else:
+            if self.invpos>-90:self.invpos-=5
+            
         if k[K_w]:
             self.y-=5
         if k[K_a]:
@@ -46,6 +63,7 @@ class Player(object):
             self.y+=5
         if k[K_d]:
             self.x+=5
+
             
 class Tile (Entity): 
     def __init__ (self,x,y,color):
