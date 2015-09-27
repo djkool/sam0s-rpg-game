@@ -10,7 +10,7 @@ class Controller(object):
     def update(self,playerobj):
         if playerobj.x>650:
             self.area[0]+=1
-            print "lel"
+            print ("lel")
         tiles.update()
 
 
@@ -20,13 +20,29 @@ class Player(Entity):
 
     def __init__(self,x,y, anim_set):
         Entity.__init__(self, x, y)
+        self.money = 0
+        self.hp = 25
+        self.maxhp = 25
+        self.invpos=1
 
         self.animator = Animator(anim_set, Animator.MODE_LOOP, 15.0)
 
+    def inventory(self):
+        #*Slide* into the DMs
+        if self.invpos < 300:
+            self.invpos+=4
+
     def update(self, dt):
 
-        # Only update player anim with actual movement
         k=pygame.key.get_pressed()
+        
+        #Inventory Key
+        if k[K_i]:
+            self.inventory()
+        elif self.invpos>-90:
+            self.invpos-=5
+        
+        # Only update player anim with actual movement
         if k[K_w]:
             self.y -= Player.WALK_SPEED
             self.animator.setAnim("walk_up")
@@ -46,6 +62,7 @@ class Player(Entity):
 
     def render(self, surf):
         screen_pos = (self.x % SCREEN_SIZE[0], self.y % SCREEN_SIZE[1])
+        pygame.draw.circle(screen, (200,5,50), (self.invpos,32), 32, 0)
         self.animator.render(surf, screen_pos)
 
 
