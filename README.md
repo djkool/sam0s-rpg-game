@@ -9,3 +9,4 @@ Credits
 ----------------------------------
 
 player_14.png - Sogomn @ http://opengameart.org/content/simple-character-0
+sands.png - yd @ http://opengameart.org/content/tiles-sands

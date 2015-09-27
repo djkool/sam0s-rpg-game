@@ -55,7 +55,6 @@ DESIRED_FPS = 60
 pygame.init()
 screen = pygame.display.set_mode(SCREEN_SIZE)
 tiles = pygame.sprite.Group()
-world = Level(SCREEN_SIZE, "r00.png")
 clock = pygame.time.Clock()
 
 # load game assets
@@ -64,6 +63,9 @@ player_anim.addAnim("walk_down", 0, 3)
 player_anim.addAnim("walk_right", 4, 7)
 player_anim.addAnim("walk_left", 8, 11)
 player_anim.addAnim("walk_up", 12, 15)
+
+world_tiles = TileSet("sands.png", (25, 25))
+world = Level(SCREEN_SIZE, "r00.png", world_tiles)
 
 go=True
 p=Player(64,64, player_anim)
